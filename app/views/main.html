@@ -1,0 +1,9 @@
+<div class="questions">
+  <ul>
+    <div>Enter a question:</div>
+    <form ng-submit="submit()">
+      <input ng-model='quest'/>
+    </form>
+    <li ng-repeat="question in questions">{{question}}<li>
+  </ul>
+</div>
