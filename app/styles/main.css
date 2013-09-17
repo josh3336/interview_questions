@@ -20,3 +20,46 @@ body {
     line-height: 1;
     letter-spacing: -1px;
 }
+
+
+.buttons {
+    float: right;
+}
+
+.question {
+    padding: 50px 0px 50px 0px;
+    font-weight: bold;
+    font-size: 16px;
+}
+
+.score {
+    font-weight: bold;
+    font-size: 15px
+}
+
+.show {
+    float: right;
+}
+
+.bold {
+    font-weight: bold;
+}
+
+.answer {
+    padding: 20px 0px 20px 0px;
+    background-color: #E9E9FF;
+    border-style: solid;
+    border-color: #A3A3B2;
+    margin: 3px;
+}
+.answers {
+    font-weight: bold;
+}
+
+.textbox-answer { 
+    width: 75%;
+}
+
+#enter-question {
+    width: 55%;
+}

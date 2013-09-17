@@ -1,9 +1,55 @@
+<span class="show">
+   <button class="btn btn-success" type="button" ng-click="toggleShow()">Answers
+      <i class="icon-eye-open"  ng-class="{true: 'icon-eye-open', false: 'icon-eye-close'}[show]"></i>
+   </button>
+</span>
 <div class="questions">
   <ul>
-    <div>Enter a question:</div>
     <form ng-submit="submit()">
-      <input ng-model='quest'/>
+      <span class = "bold">Enter a new question:</span>
+      <input ng-model='quest' id="enter-question"/>
     </form>
-    <li ng-repeat="question in questions">{{question}}<li>
+    <h2>Front End Engineering Questions</h2>
+    <div ng-repeat="question in questions | orderBy:'score':'true'">
+        <li>
+          <div class="question">
+            <span>{{question.question}}</span>
+            <span class="buttons">
+              <button class="btn btn-danger" type="button" ng-click="remove()">
+                <i class="icon-minus"></i>
+              </button>
+              <button class="btn btn-success" type="button" ng-click="thumbsup()">
+                <i class="icon-thumbs-up"></i>
+              </button>
+              <button class="btn btn-danger" type="button" ng-click="thumbsdown()">
+                <i class="icon-thumbs-down"></i>
+              </button>
+              <span class="score">{{question.score}}</span>
+            </span>
+          </div>
+        <form type="textbox" ng-submit="answerSubmit()">
+          <textarea class="textbox-answer" ng-model="answer" rows="3"></textarea>
+          <button class="submit-answer" type="submit">Submit Answer</button>
+        </form>
+          <div ng-show="show" class="answers">
+            Answers:
+            <div ng-repeat="answer in question.answers | orderBy:'score':'true'" class="answer">
+              {{answer.text}}
+              <span class="buttons">
+                <button class="btn btn-min" type="button" ng-click="remove()">
+                  <i class="icon-minus"></i>
+                </button>
+                <button class="btn btn-min" type="button" ng-click="thumbsup()">
+                    <i class="icon-thumbs-up"></i>
+                </button>
+                <button class="btn btn-min" type="button" ng-click="thumbsdown()">
+                    <i class="icon-thumbs-down"></i>
+                </button>
+              </span>
+            <span>{{answer.score}}</span>
+            </div>
+          </div>
+        </li>
+    </div>
   </ul>
 </div>
