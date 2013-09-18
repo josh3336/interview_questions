@@ -7,6 +7,7 @@ angular.module('interviewQuestionsApp')
     $scope.$cookieStore = $cookieStore;
     $scope.buttonstate= false;
     $scope.buttonid = -1;
+    $scope.questionsVoted ={};
 
     if(!$cookieStore.get('myId')){
       //$cookieStore.put('myId',Math.ceil(Math.random()*100000000));
@@ -17,10 +18,6 @@ angular.module('interviewQuestionsApp')
     var myData = new Firebase('https://interview-questions.firebaseio.com/');
     console.log('mydata: ', myData);
 
-    $scope.buttonId = function(){
-      $scope.buttonid += $scope.buttonid;
-      return 'button' + $scope.buttonid;
-    }
     $scope.submit = function(){
       var quest;
       quest = this.quest[0].toUpperCase()+this.quest.slice(1);
@@ -68,16 +65,29 @@ angular.module('interviewQuestionsApp')
 
     $scope.thumbsup = function(){
       var method;
-      debugger;
-
-      console.log('this',this)
-      this.$parent.state = 1;
-      $scope.buttonstate = !$scope.buttonstate;
+      if($scope.questionsVoted[this.question.question] === 1){
+        $scope.questionsVoted[this.question.question] = -1;
+      }
+      else{
+        $scope.questionsVoted[this.question.question] = 1;
+      }
       this.hasOwnProperty('question') ? method = 'question' : method = 'answer';
-      this[method].score += 1;
+      this[method].score += $scope.questionsVoted[this.question.question];
       
     };
 
+    $scope.thumbsdown = function(){
+      var method;
+      if($scope.questionsVoted[this.question.question] === 1){
+        $scope.questionsVoted[this.question.question] = -2;
+      }
+      else{
+        $scope.questionsVoted[this.question.question] = -1;
+      }
+      this.hasOwnProperty('question') ? method = 'question' : method = 'answer';
+      console.log("METHOD",method);
+      this[method].score  += $scope.questionsVoted[this.question.question];
+    };
 
     $scope.toggleShow = function(){
       $scope.show = !$scope.show;
@@ -90,18 +100,16 @@ angular.module('interviewQuestionsApp')
       return false;
     };
 
-    $scope.thumbsdown = function(){
-      var method;
-      this.hasOwnProperty('question') ? method = 'question' : method = 'answer';
-      console.log("METHOD",method);
-      this[method].score  -= 1;
-    };
-
     $scope.returnState = function(){
       //console.log('gangsta',this);
       //console.log('what is the state',this.state)
-      this.$parent.state;
-    }
+      if ($scope.questionsVoted[this.question.question]){
+        if ($scope.questionsVoted[this.question.question] === -2){
+          return -1;
+        }
+        return $scope.questionsVoted[this.question.question];
+      }
+    };
 
     var findIndex = function (str){
       for (var i = 0; i < $scope.questions.length; i++){

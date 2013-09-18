@@ -21,7 +21,7 @@
               <button ng-class="{1:'btn-success'}[returnState()]" class="btn" type="button" ng-click="thumbsup()">
                 <i class="icon-thumbs-up"></i>
               </button>
-              <button class="btn btn-danger" type="button" ng-click="thumbsdown()">
+              <button ng-class="{1:'btn-danger'}[returnState()]" class="btn" type="button" ng-click="thumbsdown()">
                 <i class="icon-thumbs-down"></i>
               </button>
               <span class="score">{{question.score}}</span>
