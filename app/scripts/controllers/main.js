@@ -8,6 +8,7 @@ angular.module('interviewQuestionsApp')
     $scope.buttonstate= false;
     $scope.buttonid = -1;
     $scope.questionsVoted ={};
+    $scope.answersVoted = {};
 
     if(!$cookieStore.get('myId')){
       //$cookieStore.put('myId',Math.ceil(Math.random()*100000000));
@@ -64,29 +65,43 @@ angular.module('interviewQuestionsApp')
 
 
     $scope.thumbsup = function(){
-      var method;
-      if($scope.questionsVoted[this.question.question] === 1){
-        $scope.questionsVoted[this.question.question] = -1;
+      var method, methodA, typeVoted;
+      this.hasOwnProperty('question') ? method = 'question' : method = 'answer';
+      if (method === 'question'){ methodA = 'question'; }
+      else { methodA = 'text'; }
+      typeVoted = method + 'sVoted';
+      if ($scope[typeVoted][this[method][methodA]] === 1){
+        this[method].score += -1;
+        $scope[typeVoted][this[method][methodA]] = 0;
+      }
+      else if($scope[typeVoted][this[method][methodA]] === -1){
+        this[method].score += 2;
+        $scope[typeVoted][this[method][methodA]] = 1;
       }
       else{
-        $scope.questionsVoted[this.question.question] = 1;
+        $scope[typeVoted][this[method][methodA]] = 1;
+        this[method].score += $scope[typeVoted][this[method][methodA]];
       }
-      this.hasOwnProperty('question') ? method = 'question' : method = 'answer';
-      this[method].score += $scope.questionsVoted[this.question.question];
-      
     };
 
     $scope.thumbsdown = function(){
-      var method;
-      if($scope.questionsVoted[this.question.question] === 1){
-        $scope.questionsVoted[this.question.question] = -2;
+      var method, methodA, typeVoted;
+      this.hasOwnProperty('question') ? method = 'question' : method = 'answer';
+      if (method === 'question'){ methodA = 'question'; }
+      else { methodA = 'text'; }
+      typeVoted = method + 'sVoted';
+      if($scope[typeVoted][this[method][methodA]] === -1){
+        this[method].score += 1;
+        $scope[typeVoted][this[method][methodA]] = 0;
+      }
+      else if($scope[typeVoted][this[method][methodA]] === 1){
+        this[method].score += -2;
+        $scope[typeVoted][this[method][methodA]] = -1;
       }
       else{
-        $scope.questionsVoted[this.question.question] = -1;
+        $scope[typeVoted][this[method][methodA]] = -1;
+        this[method].score += $scope[typeVoted][this[method][methodA]];
       }
-      this.hasOwnProperty('question') ? method = 'question' : method = 'answer';
-      console.log("METHOD",method);
-      this[method].score  += $scope.questionsVoted[this.question.question];
     };
 
     $scope.toggleShow = function(){
@@ -101,13 +116,17 @@ angular.module('interviewQuestionsApp')
     };
 
     $scope.returnState = function(){
-      //console.log('gangsta',this);
-      //console.log('what is the state',this.state)
-      if ($scope.questionsVoted[this.question.question]){
-        if ($scope.questionsVoted[this.question.question] === -2){
+      var method, methodA, typeVoted;
+      this.hasOwnProperty('question') ? method = 'question'  : method = 'answer';
+      if (method === 'question'){ methodA = 'question'; }
+      else { methodA = 'text';}
+      typeVoted = method + 'sVoted';
+
+      if ($scope[typeVoted][this[method][methodA]]){
+        if ($scope[typeVoted][this[method][methodA]] === -2){
           return -1;
         }
-        return $scope.questionsVoted[this.question.question];
+        return $scope[typeVoted][this[method][methodA]];
       }
     };
 
