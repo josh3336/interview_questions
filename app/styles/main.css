@@ -26,12 +26,20 @@ body {
     float: right;
 }
 
+.answer-buttons {
+    position: absolute;
+    top: 1%;
+    right: 2%;
+}
+
 .question {
     padding: 50px 0px 50px 0px;
     font-weight: bold;
     font-size: 16px;
 }
-
+body {
+    margin-top: 25px;
+}
 .score {
     font-weight: bold;
     font-size: 15px
@@ -51,9 +59,15 @@ body {
     border-style: solid;
     border-color: #A3A3B2;
     margin: 3px;
+    position: relative;
 }
 .answers {
     font-weight: bold;
+}
+.answer-score {
+    position: absolute;
+    top: 0px;
+    right: 2px;
 }
 
 .textbox-answer { 

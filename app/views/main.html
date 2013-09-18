@@ -15,10 +15,10 @@
           <div class="question">
             <span>{{question.question}}</span>
             <span class="buttons">
-              <button class="btn btn-danger" type="button" ng-click="remove()">
-                <i class="icon-minus"></i>
+              <button on-element class="btn btn-danger" ng-show="checkUser()" type="button" ng-click="remove()">
+                <i class="icon-trash"></i>
               </button>
-              <button class="btn btn-success" type="button" ng-click="thumbsup()">
+              <button ng-class="{1:'btn-success'}[returnState()]" class="btn" type="button" ng-click="thumbsup()">
                 <i class="icon-thumbs-up"></i>
               </button>
               <button class="btn btn-danger" type="button" ng-click="thumbsdown()">
@@ -34,10 +34,10 @@
           <div ng-show="show" class="answers">
             Answers:
             <div ng-repeat="answer in question.answers | orderBy:'score':'true'" class="answer">
-              {{answer.text}}
-              <span class="buttons">
-                <button class="btn btn-min" type="button" ng-click="remove()">
-                  <i class="icon-minus"></i>
+              <div ng-bind-html-unsafe="answer.text"></div>
+              <span class="answer-buttons">
+                <button class="btn btn-min" type="button" ng-show="checkUser()"ng-click="removeAns()">
+                  <i class="icon-trash"></i>
                 </button>
                 <button class="btn btn-min" type="button" ng-click="thumbsup()">
                     <i class="icon-thumbs-up"></i>
@@ -46,7 +46,7 @@
                     <i class="icon-thumbs-down"></i>
                 </button>
               </span>
-            <span>{{answer.score}}</span>
+            <span class="answer-score">{{answer.score}}</span>
             </div>
           </div>
         </li>

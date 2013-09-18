@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('interviewQuestionsApp', ["firebase"])
+angular.module('interviewQuestionsApp', ['firebase','ngCookies'])
   .config(function ($routeProvider) {
     $routeProvider
       .when('/', {
@@ -11,3 +11,11 @@ angular.module('interviewQuestionsApp', ["firebase"])
         redirectTo: '/'
       });
   });
+
+
+// angular.module('interviewQuestionsApp', ['firebase','ngCookies'])
+//   .directive('onElement', function(){
+//     return function(scope,element){
+//       console.log(element);
+//     };
+//   });
