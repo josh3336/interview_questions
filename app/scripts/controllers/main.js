@@ -23,9 +23,10 @@ angular.module('interviewQuestionsApp')
       var quest;
       quest = this.quest[0].toUpperCase()+this.quest.slice(1);
       for(var i = 0; i < $scope.questions.length; i++){
-        console.log(quest, $scope.questions[i].question);
-        if($scope.questions[i].question === quest){
-          return;
+        if($scope.questions.length){
+          if($scope.questions[i].question === quest){
+            return;
+          }
         }
       }
       $scope.questions.push({"question":quest,"answers":[{text:'Be the first to answer!'}],"score":0, "creator": $scope.$cookieStore.get('myId')});
@@ -109,7 +110,9 @@ angular.module('interviewQuestionsApp')
     };
 
     $scope.checkUser = function(){
-      if(this.question.creator === $scope.user){
+      var method;
+      this.hasOwnProperty('question') ? method = 'question' : method = 'answer';
+      if(this[method].creator === $scope.user){
         return true;
       }
       return false;

@@ -1,3 +1,22 @@
+/* Main */
+h1, h2, h3, h4, h5, h6 {
+    font-family: 'Corben', Georgia, Times, serif;
+}
+h3 { 
+    text-shadow: 1px 1px 1px #ccc;
+}
+/* */
+
+/* Body */
+body {
+    background: url(../img/brushed.png) repeat 0 0 !important;
+}
+/* */
+
+p, div {
+    font-family: 'Nobile', Helvetica, Arial, sans-serif;
+}
+
 body {
     background: #fafafa;
     font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
@@ -50,16 +69,25 @@ body {
 }
 
 .bold {
+    font-size: 17px;
     font-weight: bold;
+}
+
+.highlight {
+    box-shadow: 0 0 1em 1em #ccc;
 }
 
 .answer {
     padding: 20px 0px 20px 0px;
-    background-color: #E9E9FF;
+    background-color: #D4D7FE;
     border-style: solid;
     border-color: #A3A3B2;
     margin: 3px;
     position: relative;
+}
+.answer-text {
+    padding-left: 2%;
+    width: 75%;
 }
 .answers {
     font-weight: bold;
@@ -72,6 +100,11 @@ body {
 
 .textbox-answer { 
     width: 75%;
+}
+
+.show-ansers {
+    position: relative;
+    top:10px;
 }
 
 #enter-question {
