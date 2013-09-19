@@ -2,7 +2,8 @@
 
 angular.module('interviewQuestionsApp')
   .controller('MainCtrl', function ($scope, angularFire, $cookies, $cookieStore) {
-    $scope.questions=[];
+    // $scope.questions=[];
+    $scope.categories = [];
     $scope.show = false;
     $scope.$cookieStore = $cookieStore;
     $scope.buttonstate= false;
@@ -20,16 +21,30 @@ angular.module('interviewQuestionsApp')
     console.log('mydata: ', myData);
 
     $scope.submit = function(){
-      var quest;
+      var quest, indexof;
+      var title = this.title
       quest = this.quest[0].toUpperCase()+this.quest.slice(1);
-      for(var i = 0; i < $scope.questions.length; i++){
-        if($scope.questions.length){
-          if($scope.questions[i].question === quest){
-            return;
-          }
+      for(var i = 0; i < $scope.categories.length; i++){
+        if ($scope.categories[i].title.toLowerCase() === title.toLowerCase()){
+          indexof=i;
+          break;
         }
       }
-      $scope.questions.push({"question":quest,"answers":[{text:'Be the first to answer!'}],"score":0, "creator": $scope.$cookieStore.get('myId')});
+      if (indexof != undefined){
+        for(var i = 0; i < $scope.categories[indexof].questions.length; i++){
+          if($scope.categories[indexof].questions.length){
+            if($scope.categories[indexof].questions[i].question === quest){
+              return;
+            }
+          }
+        }
+        $scope.categories[indexof].questions.push({"question":quest,"answers":[{text:'Be the first to answer!'}],"score":0, "creator": $scope.$cookieStore.get('myId')});
+      }
+      else{
+        $scope.categories.push({'title': title,'questions':['wtf']});
+        $scope.categories[$scope.categories.length-1].questions.push({"question":quest,"answers":[{text:'Be the first to answer!'}],"score":0, "creator": $scope.$cookieStore.get('myId')});
+        $scope.categories[$scope.categories.length-1].questions.splice(0,1)
+      }
     };
 
     $scope.answerdown = function(){
@@ -49,10 +64,24 @@ angular.module('interviewQuestionsApp')
       }
     };
 
-    $scope.remove = function(){
-      var index;
-      index = findIndex(this.question.question);
-      $scope.questions.splice(index,1);
+    $scope.removeQues = function(){
+      var index,questionsArr;
+      if (this.question.answers.length === 1){
+        for(var i = 0 ; i < $scope.categories.length; i++) {
+          if ($scope.categories[i].title === this.$parent.category.title){
+            $scope.categories.splice(i,1);
+            return;
+          }
+        }
+      }
+      else{
+        questionsArr = this.$parent.category.questions;
+        for (var i = 0; i < questionsArr.length; i++) {
+          if(questionsArr[i].question === this.question.question){
+            questionsArr.splice(i,1)
+          }
+        }
+      }
     };
 
     $scope.removeAns = function(){
@@ -107,6 +136,13 @@ angular.module('interviewQuestionsApp')
 
     $scope.toggleShow = function(){
       $scope.show = !$scope.show;
+    };
+
+    $scope.checkFirstAnswer = function(){
+      if(this.answer.text === 'Be the first to answer!'){
+        return false;
+      }
+      return true;
     };
 
     $scope.checkUser = function(){
@@ -167,5 +203,5 @@ angular.module('interviewQuestionsApp')
       }
     };
 
-    angularFire(myData, $scope, "questions");
+    angularFire(myData, $scope, "categories");
   });

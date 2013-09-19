@@ -102,11 +102,33 @@ body {
     width: 75%;
 }
 
-.show-ansers {
-    position: relative;
-    top:10px;
+
+.category-title {
+    margin-bottom: -30px
+}
+
+.textbox-question {
+    width: 85%;
 }
 
 #enter-question {
     width: 55%;
 }
+.half {
+    width: 50%;
+    display: inline-block;
+}
+
+.show-answers {
+    color: gray;
+    font-family: Nobile, Helvetica, Arial, sans-serif;
+    text-decoration: none;
+}
+/* NavBar overwriting bootstrap*/
+a:hover {
+    text-decoration: none;
+}
+.btn-link:hover{
+    text-decoration: none;
+}
+/**/
