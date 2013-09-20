@@ -11,7 +11,6 @@ angular.module('interviewQuestionsApp')
     $scope.questionsVoted ={};
     $scope.answersVoted = {};
     $scope.$on('modalevent', function(event, that){
-      debugger
       $scope.submit.apply(that);
     });
 
@@ -25,7 +24,6 @@ angular.module('interviewQuestionsApp')
     console.log('mydata: ', myData);
 
     $scope.submit = function(){
-      debugger
       var quest, indexof;
       var title = this.title
       quest = this.quest[0].toUpperCase()+this.quest.slice(1);
