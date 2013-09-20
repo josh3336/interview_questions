@@ -51,8 +51,12 @@ body {
     right: 2%;
 }
 
+.answer-textbox{
+    margin: 0;
+}
+
 .question {
-    padding: 50px 0px 50px 0px;
+    padding: 30px 0px 12px 0px;
     font-weight: bold;
     font-size: 16px;
 }
