@@ -10,22 +10,18 @@ angular.module('interviewQuestionsApp')
         controller: ModalInstanceCtrl
       });
 
-      modalInstance.result.then(function (selectedItem) {
-        $scope.selected = selectedItem;
-      }, function () {
+      modalInstance.result.then(function () {
         $log.info('Modal dismissed at: ' + new Date());
       });
     };
   });
 
   var ModalInstanceCtrl = function ($rootScope,$scope, $modalInstance) {
-    $scope.$rootScope = $rootScope
  
     $scope.ok = function () {
       var args=[this.question,this.category]
       var that = this;
-      //$scope.$emit('modalevent',args)
-      $scope.$rootScope.$broadcast('modalevent', that)
+      $rootScope.$broadcast('modalevent', that)
       $modalInstance.close();
     };
 

@@ -44,7 +44,7 @@ angular.module('interviewQuestionsApp')
         $scope.categories[indexof].questions.push({"question":quest,"answers":[{text:'Be the first to answer!'}],"score":0, "creator": $scope.$cookieStore.get('myId')});
       }
       else{
-        $scope.categories.push({'title': title,'questions':['wtf']});
+        $scope.categories.push({'title': title,'questions':['other']});
         $scope.categories[$scope.categories.length-1].questions.push({"question":quest,"answers":[{text:'Be the first to answer!'}],"score":0, "creator": $scope.$cookieStore.get('myId')});
         $scope.categories[$scope.categories.length-1].questions.splice(0,1)
       }
