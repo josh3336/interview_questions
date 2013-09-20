@@ -16,8 +16,8 @@ angular.module('interviewQuestionsApp')
     });
 
     if(!$cookieStore.get('myId')){
-      //$cookieStore.put('myId',Math.ceil(Math.random()*100000000));
-      $cookieStore.put('myId',5);
+      $cookieStore.put('myId',Math.ceil(Math.random()*100000000));
+      //$cookieStore.put('myId',5);
     }
     $scope.user = $cookieStore.get('myId');
 
