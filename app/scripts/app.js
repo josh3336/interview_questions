@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('interviewQuestionsApp', ['firebase','ngCookies'])
+angular.module('interviewQuestionsApp', ['firebase','ui.bootstrap','ngCookies'])
   .config(function ($routeProvider) {
     $routeProvider
       .when('/', {

@@ -10,6 +10,10 @@ angular.module('interviewQuestionsApp')
     $scope.buttonid = -1;
     $scope.questionsVoted ={};
     $scope.answersVoted = {};
+    $scope.$on('modalevent', function(event, that){
+      debugger
+      $scope.submit.apply(that);
+    });
 
     if(!$cookieStore.get('myId')){
       //$cookieStore.put('myId',Math.ceil(Math.random()*100000000));
@@ -21,6 +25,7 @@ angular.module('interviewQuestionsApp')
     console.log('mydata: ', myData);
 
     $scope.submit = function(){
+      debugger
       var quest, indexof;
       var title = this.title
       quest = this.quest[0].toUpperCase()+this.quest.slice(1);

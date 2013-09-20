@@ -1,23 +1,23 @@
-<div class="navbar">
-  <div class="navbar-inner">
-    <a class="brand" href="#">Front-End-Engineering</a>
-    <ul class="nav">
-      <li class="divider-vertical">
-        <a data-toggle="modal" href="#myModal">
-          <i class="icon-plus-sign"></i>
-          Add Question
-        </a>
-      </li>
-      <li class="divider-vertical">
-        <button class="btn btn-link" ng-click="toggleShow()">
-          <a class="show-answers">Answers
-            <i class="icon-eye-open"  ng-class="{true: 'icon-eye-open', false: 'icon-eye-close'}[show]"></i>
+  <div class="navbar">
+    <div class="navbar-inner">
+      <a class="brand" href="#">Front-End-Engineering</a>
+      <ul class="nav">
+        <li ng-controller="ModalCtrl" class="divider-vertical">
+          <a ng-click="open()"href="#myModal">
+            <i class="icon-plus-sign"></i>
+            Add Question
           </a>
-        </button>
-      </li>
-    </ul>
-  </div>
-</div> 
+        </li>
+        <li class="divider-vertical">
+          <button class="btn btn-link" ng-click="toggleShow()">
+            <a class="show-answers">Answers
+              <i class="icon-eye-open"  ng-class="{true: 'icon-eye-open', false: 'icon-eye-close'}[show]"></i>
+            </a>
+          </button>
+        </li>
+      </ul>
+    </div>
+  </div> 
 
  <div class="header-btn">
   <!-- Modal -->
