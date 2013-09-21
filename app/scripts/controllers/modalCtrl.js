@@ -16,11 +16,12 @@ angular.module('interviewQuestionsApp')
     };
   });
 
-  var ModalInstanceCtrl = function ($rootScope,$scope, $modalInstance) {
+  var ModalInstanceCtrl = function ($rootScope,$scope,$modalInstance) {
  
     $scope.ok = function () {
       var args=[this.question,this.category]
       var that = this;
+      debugger
       $rootScope.$broadcast('modalevent', that)
       $modalInstance.close();
     };
@@ -28,4 +29,5 @@ angular.module('interviewQuestionsApp')
     $scope.cancel = function () {
       $modalInstance.dismiss('cancel');
     };
+
   };

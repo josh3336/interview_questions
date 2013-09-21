@@ -1,18 +1,30 @@
 'use strict';
 
 angular.module('interviewQuestionsApp')
-  .controller('MainCtrl', function ($scope, angularFire, $cookies, $cookieStore) {
+  .controller('MainCtrl', function ($scope, inputService, angularFire, $cookies, $cookieStore) {
     // $scope.questions=[];
     $scope.categories = [];
+    $scope.categoriesStrings = [];
     $scope.show = false;
     $scope.$cookieStore = $cookieStore;
     $scope.buttonstate= false;
     $scope.buttonid = -1;
     $scope.questionsVoted ={};
     $scope.answersVoted = {};
+    $scope.categorySelected = undefined;
+    $scope.inputService = inputService;
+
     $scope.$on('modalevent', function(event, that){
       $scope.submit.apply(that);
     });
+
+    $scope.$watch('categories',function(){
+      $scope.categoriesStrings = [];
+      for (var i = 0; i < $scope.categories.length; i++){
+        $scope.categoriesStrings.push($scope.categories[i].title);
+      }
+    },true);
+
 
     if(!$cookieStore.get('myId')){
       $cookieStore.put('myId',Math.ceil(Math.random()*100000000));
@@ -23,9 +35,14 @@ angular.module('interviewQuestionsApp')
     var myData = new Firebase('https://interview-questions.firebaseio.com/');
     console.log('mydata: ', myData);
 
+    $scope.saveData = function(message){
+      debugger
+      inputService.infor = message;
+    }
+
     $scope.submit = function(){
       var quest, indexof;
-      var title = this.title
+      var title = inputService.infor;
       quest = this.quest[0].toUpperCase()+this.quest.slice(1);
       for(var i = 0; i < $scope.categories.length; i++){
         if ($scope.categories[i].title.toLowerCase() === title.toLowerCase()){

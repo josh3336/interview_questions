@@ -10,7 +10,11 @@ angular.module('interviewQuestionsApp', ['firebase','ui.bootstrap','ngCookies'])
       .otherwise({
         redirectTo: '/'
       });
-  });
+  })
+  .service('inputService',function(){
+    debugger;
+    this.infor = 'wtf';
+  })
 
 
 // angular.module('interviewQuestionsApp', ['firebase','ngCookies'])

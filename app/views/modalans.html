@@ -8,10 +8,14 @@
         <div class="modal-body">
 
             <textarea class="textbox-question" ng-model="quest" rows="3"></textarea>
-            <span>Category:</span>
-            <input class="question-title" ng-model="title"/>
-
         </div>
+
+        <div class='container-fluid' ng-controller="MainCtrl">
+          <span>Category:</span>
+          <input type="text" ng-blur="saveData(categorySelected)" ng-model="categorySelected" typeahead="category for category in categoriesStrings | filter:$viewValue | limitTo:8">
+          <div>{{categorySelected}}</div>
+        </div>
+
         <div class="modal-footer">
             <button class="btn btn-primary" ng-click="ok()">Submit</button>
             <button class="btn btn-warning" ng-click="cancel()">Cancel</button>
