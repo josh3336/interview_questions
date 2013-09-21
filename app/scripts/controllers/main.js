@@ -1,10 +1,8 @@
 'use strict';
 
 angular.module('interviewQuestionsApp')
-  .controller('MainCtrl', function ($scope, inputService, angularFire, $cookies, $cookieStore) {
-    // $scope.questions=[];
+  .controller('MainCtrl', function ($scope, generalService, angularFire, $cookies, $cookieStore) {
     $scope.categories = [];
-    $scope.categoriesStrings = [];
     $scope.show = false;
     $scope.$cookieStore = $cookieStore;
     $scope.buttonstate= false;
@@ -12,37 +10,32 @@ angular.module('interviewQuestionsApp')
     $scope.questionsVoted ={};
     $scope.answersVoted = {};
     $scope.categorySelected = undefined;
-    $scope.inputService = inputService;
 
     $scope.$on('modalevent', function(event, that){
       $scope.submit.apply(that);
     });
 
     $scope.$watch('categories',function(){
-      $scope.categoriesStrings = [];
-      for (var i = 0; i < $scope.categories.length; i++){
-        $scope.categoriesStrings.push($scope.categories[i].title);
+      if(generalService.categoriesStrings.length !== $scope.categories.length){
+        generalService.categoriesStrings = [];
+        for (var i = 0; i < $scope.categories.length; i++){
+          generalService.categoriesStrings.push($scope.categories[i].title);
+        }
       }
     },true);
 
 
     if(!$cookieStore.get('myId')){
       $cookieStore.put('myId',Math.ceil(Math.random()*100000000));
-      //$cookieStore.put('myId',5);
     }
     $scope.user = $cookieStore.get('myId');
 
     var myData = new Firebase('https://interview-questions.firebaseio.com/');
     console.log('mydata: ', myData);
 
-    $scope.saveData = function(message){
-      debugger
-      inputService.infor = message;
-    }
-
     $scope.submit = function(){
       var quest, indexof;
-      var title = inputService.infor;
+      var title = generalService.selected;
       quest = this.quest[0].toUpperCase()+this.quest.slice(1);
       for(var i = 0; i < $scope.categories.length; i++){
         if ($scope.categories[i].title.toLowerCase() === title.toLowerCase()){
@@ -77,7 +70,7 @@ angular.module('interviewQuestionsApp')
 
     $scope.answerSubmit = function(){
      //var answer = replaceURLWithHTMLLinks(this.answer);
-      var answer = linkify(this.answer);
+      var answer = generalService.linkify(this.answer);
       this.question.answers.push({'text':answer, 'score':0, 'creator': $scope.$cookieStore.get('myId')});
       if (this.question.answers[0].text === "Be the first to answer!" ){
         this.question.answers.splice(0,1);
@@ -86,7 +79,8 @@ angular.module('interviewQuestionsApp')
 
     $scope.removeQues = function(){
       var index,questionsArr;
-      if (this.question.answers.length === 1){
+      debugger
+      if (this.$parent.category.questions.length === 1){
         for(var i = 0 ; i < $scope.categories.length; i++) {
           if ($scope.categories[i].title === this.$parent.category.title){
             $scope.categories.splice(i,1);
@@ -195,24 +189,6 @@ angular.module('interviewQuestionsApp')
           return i;
         }
       }
-    };
-
-    var linkify = function(inputText) {
-      var replacedText, replacePattern1, replacePattern2, replacePattern3;
-
-      //URLs starting with http://, https://, or ftp://
-      replacePattern1 = /(\b(https?|ftp):\/\/[-A-Z0-9+&@#\/%?=~_|!:,.;]*[-A-Z0-9+&@#\/%=~_|])/gim;
-      replacedText = inputText.replace(replacePattern1, '<a href="$1" target="_blank">$1</a>');
-
-      //URLs starting with "www." (without // before it, or it'd re-link the ones done above).
-      replacePattern2 = /(^|[^\/])(www\.[\S]+(\b|$))/gim;
-      replacedText = replacedText.replace(replacePattern2, '$1<a href="http://$2" target="_blank">$2</a>');
-
-      //Change email addresses to mailto:: links.
-      replacePattern3 = /(\w+@[a-zA-Z_]+?\.[a-zA-Z]{2,6})/gim;
-      replacedText = replacedText.replace(replacePattern3, '<a href="mailto:$1">$1</a>');
-
-      return replacedText;
     };
 
     var findIndexAns = function(str,that){

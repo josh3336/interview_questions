@@ -16,13 +16,12 @@ angular.module('interviewQuestionsApp')
     };
   });
 
-  var ModalInstanceCtrl = function ($rootScope,$scope,$modalInstance) {
- 
+  var ModalInstanceCtrl = function ($rootScope,$scope,$modalInstance,generalService) {
+    $scope.categories = generalService.categoriesStrings
     $scope.ok = function () {
-      var args=[this.question,this.category]
       var that = this;
-      debugger
-      $rootScope.$broadcast('modalevent', that)
+      generalService.selected = this.selected;
+      $rootScope.$broadcast('modalevent', that);
       $modalInstance.close();
     };
 
