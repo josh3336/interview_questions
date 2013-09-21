@@ -16,7 +16,7 @@ angular.module('interviewQuestionsApp')
     });
 
     $scope.$watch('categories',function(){
-      if(generalService.categoriesStrings.length !== $scope.categories.length){
+      if(generalService.categoriesStrings.length !== $scope.categories.length  && $scope.categories.length != 0){
         generalService.categoriesStrings = [];
         for (var i = 0; i < $scope.categories.length; i++){
           generalService.categoriesStrings.push($scope.categories[i].title);
@@ -79,7 +79,6 @@ angular.module('interviewQuestionsApp')
 
     $scope.removeQues = function(){
       var index,questionsArr;
-      debugger
       if (this.$parent.category.questions.length === 1){
         for(var i = 0 ; i < $scope.categories.length; i++) {
           if ($scope.categories[i].title === this.$parent.category.title){
