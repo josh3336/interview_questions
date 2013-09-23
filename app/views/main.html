@@ -1,23 +1,23 @@
-  <div class="navbar">
-    <div class="navbar-inner">
-      <a class="brand" href="#">Front-End-Engineering</a>
-      <ul class="nav">
-        <li ng-controller="ModalCtrl" class="divider-vertical">
-          <a ng-click="open()"href="#myModal">
-            <i class="icon-plus-sign"></i>
-            Add Question
+<div class="navbar">
+  <div class="navbar-inner">
+    <a class="brand" href="#">Front-End-Engineering</a>
+    <ul class="nav">
+      <li ng-controller="ModalCtrl" class="divider-vertical">
+        <a ng-click="open()"href="#myModal">
+          <i class="icon-plus-sign"></i>
+          Add Question
+        </a>
+      </li>
+      <li class="divider-vertical">
+        <button class="btn btn-link" ng-click="toggleShow()">
+          <a class="show-answers">Answers
+            <i class="icon-eye-open"  ng-class="{true: 'icon-eye-open', false: 'icon-eye-close'}[show]"></i>
           </a>
-        </li>
-        <li class="divider-vertical">
-          <button class="btn btn-link" ng-click="toggleShow()">
-            <a class="show-answers">Answers
-              <i class="icon-eye-open"  ng-class="{true: 'icon-eye-open', false: 'icon-eye-close'}[show]"></i>
-            </a>
-          </button>
-        </li>
-      </ul>
-    </div>
-  </div> 
+        </button>
+      </li>
+    </ul>
+  </div>
+</div> 
 
 <div class="questions">
   <ul>
@@ -26,7 +26,7 @@
       <div ng-repeat="question in category.questions | orderBy:'score':'true'">
           <li>
             <div class="question">
-              <span>{{question.question}}</span>
+              <div insert-question></div>
               <span class="buttons">
                 <button class="btn btn-danger" ng-show="checkUser()" type="button" ng-click="removeQues()">
                   <i class="icon-trash"></i>

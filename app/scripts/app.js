@@ -10,12 +10,4 @@ angular.module('interviewQuestionsApp', ['firebase','ui.bootstrap','ngCookies'])
       .otherwise({
         redirectTo: '/'
       });
-  });
- 
-
-// angular.module('interviewQuestionsApp', ['firebase','ngCookies'])
-//   .directive('onElement', function(){
-//     return function(scope,element){
-//       console.log(element);
-//     };
-//   });
+  })

@@ -1,9 +1,15 @@
 'use strict';
 
 angular.module('interviewQuestionsApp')
-	.service('generalService',function(){
+	.service('generalService',function ($cookieStore){
     this.categoriesStrings = [];
     this.selected = undefined;
+    this.getCookie = function(){
+      if(!$cookieStore.get('myId')){
+        $cookieStore.put('myId',Math.ceil(Math.random()*100000000));
+      }
+      return $cookieStore.get('myId');
+    }
     this.linkify = function(inputText) {
       var replacedText, replacePattern1, replacePattern2, replacePattern3;
 

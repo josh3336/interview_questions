@@ -128,11 +128,26 @@ body {
     font-family: Nobile, Helvetica, Arial, sans-serif;
     text-decoration: none;
 }
+
+
+/*Modal*/
+.type-select {
+    width: 120px;
+}
+/**/
 /* NavBar overwriting bootstrap*/
 a:hover {
     text-decoration: none;
 }
 .btn-link:hover{
     text-decoration: none;
+}
+/**/
+
+/*pretty print*/
+.prettyprint {
+    font-size: 14px;
+    font-family: Consolas;
+    background-color: #AEB0AC
 }
 /**/

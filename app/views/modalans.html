@@ -5,14 +5,18 @@
   </div>
   <div class="modal-body">
 
-      <textarea class="textbox-question" ng-model="quest" rows="3"></textarea>
+      <textarea type="lines" class="textbox-question" ng-model="quest" rows="3"></textarea>
   </div>
 
   <div class='container-fluid'>
     <span>Category:</span>
     <input type="text" ng-model="selected" typeahead="category for category in categories | filter:$viewValue | limitTo:8">
-  </div>
-
+    <span>Type: </span>
+    <select ng-model="type" class="type-select">
+      <option>Text</option>
+      <option>JavaScript</option>
+    </select>
+</div>
   <div class="modal-footer">
       <button class="btn btn-primary" ng-click="ok()">Submit</button>
       <button class="btn btn-warning" ng-click="cancel()">Cancel</button>

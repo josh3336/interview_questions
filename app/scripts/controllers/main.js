@@ -1,10 +1,9 @@
 'use strict';
 
 angular.module('interviewQuestionsApp')
-  .controller('MainCtrl', function ($scope, generalService, angularFire, $cookies, $cookieStore) {
+  .controller('MainCtrl', function ($scope, generalService, angularFire) {
     $scope.categories = [];
     $scope.show = false;
-    $scope.$cookieStore = $cookieStore;
     $scope.buttonstate= false;
     $scope.buttonid = -1;
     $scope.questionsVoted ={};
@@ -14,7 +13,6 @@ angular.module('interviewQuestionsApp')
     $scope.$on('modalevent', function(event, that){
       $scope.submit.apply(that);
     });
-
     $scope.$watch('categories',function(){
       if(generalService.categoriesStrings.length !== $scope.categories.length  && $scope.categories.length != 0){
         generalService.categoriesStrings = [];
@@ -24,17 +22,14 @@ angular.module('interviewQuestionsApp')
       }
     },true);
 
-
-    if(!$cookieStore.get('myId')){
-      $cookieStore.put('myId',Math.ceil(Math.random()*100000000));
-    }
-    $scope.user = $cookieStore.get('myId');
-
+    $scope.user = generalService.getCookie()
     var myData = new Firebase('https://interview-questions.firebaseio.com/');
-    console.log('mydata: ', myData);
 
     $scope.submit = function(){
       var quest, indexof;
+      this.quest = this.quest.replace(/\t/g, '&nbsp;&nbsp;&nbsp;&nbsp;');
+      this.quest = this.quest.replace(/ /g, '&nbsp;')
+      this.quest = this.quest.replace(/\n/g, "<br />")
       var title = generalService.selected;
       quest = this.quest[0].toUpperCase()+this.quest.slice(1);
       for(var i = 0; i < $scope.categories.length; i++){
@@ -51,11 +46,11 @@ angular.module('interviewQuestionsApp')
             }
           }
         }
-        $scope.categories[indexof].questions.push({"question":quest,"answers":[{text:'Be the first to answer!'}],"score":0, "creator": $scope.$cookieStore.get('myId')});
+        $scope.categories[indexof].questions.push({"question":quest,"answers" : [{text :'Be the first to answer!'}],"score" : 0, "creator" : generalService.getCookie(), "type" : this.type});
       }
       else{
         $scope.categories.push({'title': title,'questions':['other']});
-        $scope.categories[$scope.categories.length-1].questions.push({"question":quest,"answers":[{text:'Be the first to answer!'}],"score":0, "creator": $scope.$cookieStore.get('myId')});
+        $scope.categories[$scope.categories.length-1].questions.push({"question" : quest, "answers" : [{text:'Be the first to answer!'}], "score" : 0, "creator" : generalService.getCookie(), "type":this.type});
         $scope.categories[$scope.categories.length-1].questions.splice(0,1)
       }
     };
@@ -69,9 +64,9 @@ angular.module('interviewQuestionsApp')
     };
 
     $scope.answerSubmit = function(){
-     //var answer = replaceURLWithHTMLLinks(this.answer);
+      debugger
       var answer = generalService.linkify(this.answer);
-      this.question.answers.push({'text':answer, 'score':0, 'creator': $scope.$cookieStore.get('myId')});
+      this.question.answers.push({'text':answer, 'score':0, 'creator':generalService.getCookie()});
       if (this.question.answers[0].text === "Be the first to answer!" ){
         this.question.answers.splice(0,1);
       }
@@ -179,14 +174,6 @@ angular.module('interviewQuestionsApp')
           return -1;
         }
         return $scope[typeVoted][this[method][methodA]];
-      }
-    };
-
-    var findIndex = function (str){
-      for (var i = 0; i < $scope.questions.length; i++){
-        if ($scope.questions[i].question === str ){
-          return i;
-        }
       }
     };
 
