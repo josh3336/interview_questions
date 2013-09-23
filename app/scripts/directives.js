@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('interviewQuestionsApp')
-	.directive('insertQuestion',function(){
+	.directive('insertQuestion',function (){
     return function($scope,element,attrs){
       if($scope.this.question.type === 'JavaScript'){
         element.append("<pre class='prettyprint'>"+$scope.question.question+"</pre>");
