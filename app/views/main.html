@@ -15,9 +15,14 @@
           </a>
         </button>
       </li>
+      <li>
+        <span class="welcome" welcome></span>
+      </li>
     </ul>
   </div>
 </div> 
+
+<span ng-controller="loginModalCtrl"></span>
 
 <div class="questions">
   <ul>
@@ -28,6 +33,7 @@
             <div class="question">
               <div insert-question></div>
               <span class="buttons">
+                <span class="insert-creator" insert-creator></span>
                 <button class="btn btn-danger" ng-show="checkUser()" type="button" ng-click="removeQues()">
                   <i class="icon-trash"></i>
                 </button>

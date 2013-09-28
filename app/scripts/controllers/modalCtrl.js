@@ -1,10 +1,14 @@
 'use strict';
 
 angular.module('interviewQuestionsApp')
- .controller('ModalCtrl', function ($scope, $modal, $log) {
+ .controller('ModalCtrl', function ($rootScope, generalService, $scope, $modal, $log) {
 
     $scope.open = function () {
-
+      var result
+      result = $scope.loggedIn()
+      if(!result){
+        return
+      }
       var modalInstance = $modal.open({
         templateUrl: '/views/modalans.html',
         controller: ModalInstanceCtrl
@@ -14,6 +18,9 @@ angular.module('interviewQuestionsApp')
         $log.info('Modal dismissed at: ' + new Date());
       });
     };
+    $scope.loggedIn = function(){
+      return generalService.checkUser($rootScope)
+    }
   });
 
   var ModalInstanceCtrl = function ($rootScope,$scope,$modalInstance,generalService) {
