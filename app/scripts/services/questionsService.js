@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('interviewQuestionsApp')
-  .service('questionsService', function (angularFire){
+  .service('questionsService', function ($timeout,angularFire,categoriesService){
 		var questionsUrl = 'https://interview-questions.firebaseio.com/questions';
 		var questionsRef = new Firebase(questionsUrl);
 
@@ -9,11 +9,16 @@ angular.module('interviewQuestionsApp')
 			angularFire(questionsRef, scope, model);
 		};
 
-		this.addItem = function(model,item){
-			questionsRef.push(item);
+		this.addItem = function(item,title){
+			var questionObj = {}
+			var id = questionsRef.push().name();
+			item['id'] = id;
+			questionsRef.child(id).set(item,function(){
+				categoriesService.addItem(title,id)
+			});
 		};
 
-		this.removeAll = function(model,item){
+		this.removeAll = function(item){
 			questionsRef.remove();
 		};
 

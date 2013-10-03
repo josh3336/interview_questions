@@ -1,0 +1,277 @@
+{
+  "users" : {
+    "10501222" : {
+      "profile" : "https://www.facebook.com/josh.pagano",
+      "displayName" : "Josh Pagano",
+      "qvoted" : {
+        "-J4bKs-SDwk3WUPa38IH" : {
+          "qid" : true
+        },
+        "-J4bKP9m04-IFfAWOh21" : {
+          "qid" : true
+        },
+        "-J4bDjfqfR1m-nR8gLl1" : {
+          "qid" : true
+        },
+        "-J4bH1mDmA-J1pX2uqjl" : {
+          "qid" : true
+        },
+        "-J4bGHet2DeZMFROCFLX" : {
+          "qid" : true
+        },
+        "-J4bL-hmYHVG3MGXl_SH" : {
+          "qid" : true
+        }
+      },
+      "id" : "10501222"
+    },
+    "-J4bBsZJoy_la4xuArU2" : {
+      "ok" : "134143"
+    }
+  },
+  "2" : {
+    "questions" : [ {
+      "type" : "Text",
+      "question" : "What is “hoisting”?",
+      "creator" : 10501222,
+      "answers" : [ {
+        "text" : "<a href=\"http://net.tutsplus.com/tutorials/javascript-ajax/quick-tip-javascript-hoisting-explained/\" target=\"_blank\">http://net.tutsplus.com/tutorials/javascript-ajax/quick-tip-javascript-hoisting-explained/</a>",
+        "creator" : 10501222,
+        "score" : 1
+      } ],
+      "score" : 2
+    }, {
+      "type" : "Text",
+      "question" : "Explain “closure”?",
+      "creator" : 10501222,
+      "answers" : [ {
+        "text" : "<a href=\"http://stackoverflow.com/questions/111102/how-do-javascript-closures-work\" target=\"_blank\">http://stackoverflow.com/questions/111102/how-do-javascript-closures-work</a>",
+        "creator" : 10501222,
+        "score" : 1
+      } ],
+      "score" : 1
+    }, {
+      "type" : "Text",
+      "question" : "What is event delegation?",
+      "creator" : 5,
+      "answers" : [ {
+        "text" : "<a href=\"http://davidwalsh.name/event-delegate\" target=\"_blank\">http://davidwalsh.name/event-delegate</a>",
+        "creator" : 5,
+        "score" : 2
+      }, {
+        "text" : "<a href=\"http://stackoverflow.com/questions/1687296/what-is-dom-event-delegation\" target=\"_blank\">http://stackoverflow.com/questions/1687296/what-is-dom-event-delegation</a>",
+        "creator" : 5,
+        "score" : 0
+      } ],
+      "score" : 2
+    }, {
+      "type" : "Text",
+      "question" : "What does \"this\" refer too?",
+      "creator" : 10501222,
+      "answers" : [ {
+        "text" : "<a href=\"http://www.sitepoint.com/what-is-this-in-javascript/\" target=\"_blank\">http://www.sitepoint.com/what-is-this-in-javascript/</a>",
+        "creator" : 5,
+        "score" : 0
+      } ],
+      "score" : 0
+    }, {
+      "type" : "Text",
+      "question" : "Compare node.js with other backend languages?",
+      "creator" : 10501222,
+      "answers" : [ {
+        "text" : "<a href=\"http://stackoverflow.com/questions/1884724/what-is-node-js\" target=\"_blank\">http://stackoverflow.com/questions/1884724/what-is-node-js</a>",
+        "creator" : 5,
+        "score" : 0
+      } ],
+      "score" : 0
+    }, {
+      "type" : "JavaScript",
+      "question" : "What&nbsp;is&nbsp;the&nbsp;following&nbsp;output?&nbsp;<br />var&nbsp;passNumber&nbsp;=&nbsp;function(number){<br />&nbsp;&nbsp;&nbsp;&nbsp;var&nbsp;newResult;<br />&nbsp;&nbsp;&nbsp;&nbsp;console.log('1');<br /><br />&nbsp;&nbsp;&nbsp;&nbsp;setTimeout(function(){<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;multiply(number*5,function(result){<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;console.log('2');<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;newResult&nbsp;=&nbsp;result;<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;});<br />&nbsp;&nbsp;&nbsp;&nbsp;},&nbsp;0);<br />&nbsp;&nbsp;&nbsp;&nbsp;<br />&nbsp;&nbsp;&nbsp;&nbsp;multiply(number,&nbsp;function(result){<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;console.log('3');<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;newResult=result;<br />&nbsp;&nbsp;&nbsp;&nbsp;});<br />&nbsp;&nbsp;&nbsp;&nbsp;return&nbsp;newResult;<br />};<br /><br />var&nbsp;multiply&nbsp;=&nbsp;function(number,&nbsp;cb){<br />&nbsp;&nbsp;&nbsp;&nbsp;console.log('4');<br />&nbsp;&nbsp;&nbsp;&nbsp;var&nbsp;result;<br />&nbsp;&nbsp;&nbsp;&nbsp;result&nbsp;=&nbsp;number&nbsp;*&nbsp;1000;<br />&nbsp;&nbsp;&nbsp;&nbsp;cb(result);<br />};<br /><br />passNumber(10);",
+      "creator" : 11080369,
+      "answers" : [ {
+        "text" : "Be the first to answer!"
+      } ],
+      "score" : 1
+    }, {
+      "type" : "JavaScript",
+      "question" : "What&nbsp;does&nbsp;this&nbsp;output?&nbsp;Why?<br />function&nbsp;User(name)&nbsp;{<br />&nbsp;&nbsp;&nbsp;&nbsp;this.name&nbsp;=&nbsp;name;<br />};<br /><br />var&nbsp;j&nbsp;=&nbsp;User('Jack');<br />alert(j.name)",
+      "creator" : 11080369,
+      "answers" : [ {
+        "text" : "Name is undefined because j doesn't create a new instance of User. The variable j is set to the result of passing the parameter, 'Jack', to it. Since this returns nothing, j is set to undefined. When you try to access j.name later, you're trying to access the .name property of undefined, which throws an error.",
+        "creator" : 76785085,
+        "score" : 0
+      } ],
+      "score" : 0
+    }, {
+      "type" : "JavaScript",
+      "question" : "What&nbsp;is&nbsp;the&nbsp;difference&nbsp;between:<br />[].slice.apply('josh',[0,2])<br />and<br />Array.prototype.slice.apply('josh',[0,2])",
+      "creator" : 11080369,
+      "answers" : [ {
+        "text" : "Be the first to answer!"
+      } ],
+      "score" : 0
+    }, {
+      "type" : "Text",
+      "question" : "What&nbsp;are&nbsp;the&nbsp;differences&nbsp;between&nbsp;==&nbsp;and&nbsp;===?&nbsp;Will&nbsp;==&nbsp;ever&nbsp;give&nbsp;an&nbsp;inaccurate&nbsp;result?",
+      "creator" : 21539580,
+      "answers" : [ {
+        "text" : "<a href=\"http://www.codeproject.com/Articles/182416/A-Collection-of-JavaScript-Gotchas#double-eq\" target=\"_blank\">http://www.codeproject.com/Articles/182416/A-Collection-of-JavaScript-Gotchas#double-eq</a>",
+        "creator" : 21539580,
+        "score" : 0
+      } ],
+      "score" : 0
+    }, {
+      "type" : "Text",
+      "question" : "What&nbsp;is&nbsp;Namespacing?",
+      "creator" : 21539580,
+      "answers" : [ {
+        "text" : "Be the first to answer!"
+      } ],
+      "score" : 0
+    }, {
+      "type" : "JavaScript",
+      "question" : "What&nbsp;does&nbsp;the&nbsp;following&nbsp;output?<br />var&nbsp;Foo&nbsp;=&nbsp;function(&nbsp;a&nbsp;)&nbsp;{&nbsp;<br />&nbsp;&nbsp;function&nbsp;bar()&nbsp;{&nbsp;&nbsp;&nbsp;<br />&nbsp;&nbsp;&nbsp;&nbsp;return&nbsp;a;&nbsp;<br />&nbsp;&nbsp;}<br />&nbsp;&nbsp;this.baz&nbsp;=&nbsp;function()&nbsp;{&nbsp;&nbsp;&nbsp;<br />&nbsp;&nbsp;&nbsp;&nbsp;return&nbsp;a;&nbsp;<br />&nbsp;&nbsp;};<br />};<br />&nbsp;<br />Foo.prototype&nbsp;=&nbsp;{<br />&nbsp;&nbsp;biz:&nbsp;function()&nbsp;{&nbsp;&nbsp;&nbsp;&nbsp;<br />&nbsp;&nbsp;&nbsp;&nbsp;return&nbsp;a;&nbsp;<br />&nbsp;&nbsp;}<br />};<br />&nbsp;<br />var&nbsp;f&nbsp;=&nbsp;new&nbsp;Foo(&nbsp;8&nbsp;);<br />f.baz();//?<br />f.bar();//?<br />f.biz()&nbsp;//?",
+      "creator" : 11080369,
+      "answers" : [ {
+        "text" : "Be the first to answer!"
+      } ],
+      "score" : 0
+    } ],
+    "title" : "JavaScript"
+  },
+  "length" : 14,
+  "1" : {
+    "questions" : [ {
+      "question" : "What are some features of HTML 5?",
+      "creator" : 3260959,
+      "answers" : [ {
+        "text" : "<a href=\"http://net.tutsplus.com/tutorials/html-css-techniques/25-html5-features-tips-and-techniques-you-must-know/\" target=\"_blank\">http://net.tutsplus.com/tutorials/html-css-techniques/25-html5-features-tips-and-techniques-you-must-know/</a>",
+        "creator" : 3260959,
+        "score" : 0
+      } ],
+      "score" : 1
+    }, {
+      "type" : "Text",
+      "question" : "What&nbsp;is&nbsp;a&nbsp;Doctype&nbsp;declaration&nbsp;definition?",
+      "creator" : 21539580,
+      "answers" : [ {
+        "text" : "Be the first to answer!"
+      } ],
+      "score" : 0
+    } ],
+    "title" : "HTML"
+  },
+  "questions" : {
+    "-J4Yp_akkkbMKyu5cjd_" : {
+      "user" : "13414",
+      "content" : "k;adslfjaljsdfkjsalkjasasd"
+    },
+    "-J4alEAHTQzGpaZKvTCS" : {
+      "user" : "13414",
+      "content" : "k;adslfjaljsdfkjsalkjasasd"
+    },
+    "-J4bKP9rNVhuhTTSdC2V" : {
+      "user" : "13414",
+      "content" : "k;adslfjaljsdfkjsalkjasasd",
+      "id" : "-J4bKP9rNVhuhTTSdC2V"
+    },
+    "-J4b0duZWZ-c4EO3KU_4" : {
+      "user" : "13414",
+      "content" : "k;adslfjaljsdfkjsalkjasasd"
+    },
+    "-J4bL-hr1ZNvOer70XPp" : {
+      "user" : "13414",
+      "content" : "k;adslfjaljsdfkjsalkjasasd",
+      "id" : "-J4bL-hr1ZNvOer70XPp"
+    },
+    "-J4anNkcNhr8gMAl1BhR" : {
+      "user" : "13414",
+      "content" : "k;adslfjaljsdfkjsalkjasasd"
+    },
+    "-J4bKs-UFOdRd7TBv-eE" : {
+      "user" : "13414",
+      "content" : "k;adslfjaljsdfkjsalkjasasd",
+      "id" : "-J4bKs-UFOdRd7TBv-eE"
+    },
+    "-J4bH1mFags9XcYT5WEN" : {
+      "user" : "13414",
+      "content" : "k;adslfjaljsdfkjsalkjasasd",
+      "id" : "-J4bH1mFags9XcYT5WEN"
+    },
+    "-J4b-VY4klIASWPb5w-U" : {
+      "user" : "13414",
+      "content" : "k;adslfjaljsdfkjsalkjasasd"
+    },
+    "-J4bDjfsn1Wj8A4djXSf" : {
+      "user" : "13414",
+      "content" : "k;adslfjaljsdfkjsalkjasasd",
+      "id" : "-J4bDjfsn1Wj8A4djXSe"
+    },
+    "-J4YuaJdIQ6nv-S4m6rX" : {
+      "user" : "13414",
+      "content" : "k;adslfjaljsdfkjsalkjasasd"
+    },
+    "-J4b2VEg4QP0nKtoLhdi" : {
+      "user" : "13414",
+      "content" : "k;adslfjaljsdfkjsalkjasasd"
+    },
+    "-J4b1cKpHY09mEx_T8As" : {
+      "user" : "13414",
+      "content" : "k;adslfjaljsdfkjsalkjasasd"
+    }
+  },
+  "testarr" : [ "5", "100", "51515", "5", "100", "51515" ],
+  "0" : {
+    "questions" : [ {
+      "question" : "How do Floats work?",
+      "creator" : 3260959,
+      "answers" : [ {
+        "text" : "<a href=\"http://www.cssnewbie.com/css-float-property/#.Ujpi9GSZ3rQ\" target=\"_blank\">http://www.cssnewbie.com/css-float-property/#.Ujpi9GSZ3rQ</a>",
+        "creator" : 3260959,
+        "score" : -1
+      } ],
+      "score" : 0
+    }, {
+      "question" : "What is the box model?",
+      "creator" : 3260959,
+      "answers" : [ {
+        "text" : "<a href=\"http://www.w3schools.com/css/css_boxmodel.asp\" target=\"_blank\">http://www.w3schools.com/css/css_boxmodel.asp</a>",
+        "creator" : 3260959,
+        "score" : 1
+      } ],
+      "score" : 19
+    }, {
+      "type" : "Text",
+      "question" : "Name&nbsp;5&nbsp;ways&nbsp;to&nbsp;hide&nbsp;an&nbsp;element&nbsp;using&nbsp;CSS",
+      "creator" : 21539580,
+      "answers" : [ {
+        "text" : "1. display: none;\n2. visibility: hidden;\n3. width: 0; height: 0;\n4. opacity: 0;\n5. position: absolute; left: 9000000px;",
+        "creator" : 21539580,
+        "score" : 1
+      } ],
+      "score" : 4
+    }, {
+      "type" : "Text",
+      "question" : "What&nbsp;is&nbsp;CSS&nbsp;specificity?",
+      "creator" : 21539580,
+      "answers" : [ {
+        "text" : "Be the first to answer!"
+      } ],
+      "score" : 5
+    } ],
+    "title" : "CSS"
+  },
+  "3" : {
+    "questions" : [ {
+      "question" : "How do you do a join?",
+      "creator" : 5,
+      "answers" : [ {
+        "text" : "<a href=\"http://www.codinghorror.com/blog/2007/10/a-visual-explanation-of-sql-joins.html\" target=\"_blank\">http://www.codinghorror.com/blog/2007/10/a-visual-explanation-of-sql-joins.html</a>",
+        "creator" : 5,
+        "score" : 0
+      } ],
+      "score" : 1
+    } ],
+    "title" : "Databases"
+  }
+}

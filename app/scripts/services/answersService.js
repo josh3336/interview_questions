@@ -9,11 +9,15 @@ angular.module('interviewQuestionsApp')
 			angularFire(answersRef, scope, model);
 		};
 
-		this.addItem = function(model,item){
-			answersRef.push(item);
+		this.addItem = function(item){
+			debugger;
+			var id = answersRef.push().name();
+			item['id'] = id;
+			answersRef.child(id).set(item);	
+			return id;	
 		};
 
-		this.removeAll = function(model,item){
+		this.removeAll = function(item){
 			answersRef.remove();
 		};
 

@@ -29,6 +29,17 @@ angular.module('interviewQuestionsApp')
 
     };
 
+    this.getUserwoscope = function(){
+      var that = this;
+      $http.get('/getuser').success(function(data){
+        if (data){
+          that.user = data;
+        }
+      });   
+    };
+
+    this.getUserwoscope.apply(this)
+
     this.getUser = function(scope){
       if (!this.user){
         var that = this;
@@ -40,8 +51,8 @@ angular.module('interviewQuestionsApp')
                 that.user = data
                 that.user['questionsVoted'] = {};
                 that.user['answersVoted'] = {};
-                scope.user = that.user
-                scope.users[that.user.id] = that.user;
+                //scope.user = that.user
+                //scope.users[that.user.id] = that.user;
               }
               that.user = scope.users[data.id]
             }
@@ -49,5 +60,5 @@ angular.module('interviewQuestionsApp')
         });
       }
       return this.user
-    }
+    };
   });

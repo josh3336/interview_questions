@@ -27,10 +27,11 @@
 <div class="questions">
   <ul>
     <div ng-repeat="category in categories">
-      <h3 class="category-title">{{category.title}}</h3>
-      <div ng-repeat="question in category.questions | orderBy:'score':'true'">
+      <h3 class="category-title">{{category.id}}</h3>
+
+      <ul ng-repeat="question in questionsArray() | orderBy: orderQScore : 'true'">
           <li>
-            <div class="question">
+            <div ng-class='addScore()' class="question">
               <div insert-question></div>
               <span class="buttons">
                 <span class="insert-creator" insert-creator></span>
@@ -43,7 +44,7 @@
                 <button ng-class="{'-1':'btn-danger'}[returnState()]" class="btn" type="button" ng-click="thumbsdown()">
                   <i class="icon-thumbs-down"></i>
                 </button>
-                <span class="score">{{question.score}}</span>
+                <span class="score">{{questions[question]['score']}}</span>
               </span>
             </div>
           <form class="answer-textbox" ng-hide="show" type="textbox" ng-submit="answerSubmit()">
@@ -52,23 +53,23 @@
           </form>
             <div ng-show="show" class="answers">
               <span class="highlight">Answers:</span>
-              <div ng-repeat="answer in question.answers | orderBy:'score':'true'" class="answer">
-                <div class="answer-text" ng-bind-html-unsafe="answer.text"></div>
+              <div ng-repeat="answer in answersArray() | orderBy: orderAScore :'true'" class="answer">
+                <div class="answer-text" ng-bind-html-unsafe="answers[answer]['text']"></div>
                 <span class="answer-buttons" ng-show="checkFirstAnswer()">
                   <button class="btn btn-danger btn-min" type="button" ng-show="checkUser()"ng-click="removeAns()">
                     <i class="icon-trash"></i>
                   </button>
-                  <button ng-class="{1:'btn-success'}[returnState()]" class="btn btn-min" type="button" ng-click="thumbsup()">
+                  <button ng-class="{1:'btn-success'}[returnStateAnswer()]" class="btn btn-min" type="button" ng-click="thumbsup()">
                       <i class="icon-thumbs-up"></i>
                   </button>
-                  <button ng-class="{'-1':'btn-danger'}[returnState()]" class="btn btn-min" type="button" ng-click="thumbsdown()">
+                  <button ng-class="{'-1':'btn-danger'}[returnStateAnswer()]" class="btn btn-min" type="button" ng-click="thumbsdown()">
                       <i class="icon-thumbs-down"></i>
                   </button>
                 </span>
-              <span class="answer-score">{{answer.score}}</span>
+              <span class="answer-score">{{answers[answer]['score']}}</span>
               </div>
             </div>
           </li>
-      </div>
+      </ul>
   </ul>
 </div>

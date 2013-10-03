@@ -11,3 +11,6 @@ angular.module('interviewQuestionsApp', ['firebase','ui.bootstrap','ngCookies'])
         redirectTo: '/'
       });
   })
+  .run(function (generalService){
+    generalService;
+  });
