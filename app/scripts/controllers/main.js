@@ -19,14 +19,17 @@ angular.module('interviewQuestionsApp')
 
     $scope.$watch('users',function(){
       if (generalService.user && !jQuery.isEmptyObject($scope.users)){
+        if(!$scope.users[generalService.user.id]){
+          $scope.users[generalService.user.id] = generalService.user;
+        }
         $scope.user = $scope.users[generalService.user.id]
       }
     });
 
     usersService.setModel($scope, 'users');
     questionsService.setModel($scope, 'questions');
-    categoriesService.setModel($scope, 'categories');
     answersService.setModel($scope, 'answers');
+    categoriesService.setModel($scope, 'categories');
 
     $scope.$watch('categories',function(){
       if(generalService.categoriesStrings.length !== $scope.categories.length  && jQuery.isEmptyObject($scope.categories) != true){
@@ -87,39 +90,12 @@ angular.module('interviewQuestionsApp')
       question = {"text":quest,"answers" : {'1':'1'},"score" : 0, "creator" : generalService.user.id, "type" : this.type}
       qid = questionsService.addItem(question,title);
 
-      // $scope.cats[title] = {}
-      // $scope.cats[title][id] = true;
-      //categoriesService.addItem(title, qid)
-
-      // for(var i = 0; i < $scope.categories.length; i++){
-      //   if ($scope.categories[i].title.toLowerCase() === title.toLowerCase()){
-      //     indexof=i;
-      //     break;
-      //   }
-      // }
-      // if (indexof != undefined){
-      //   for(var i = 0; i < $scope.categories[indexof].questions.length; i++){
-      //     if($scope.categories[indexof].questions.length){
-      //       if($scope.categories[indexof].questions[i].question === quest){
-      //         return;
-      //       }
-      //     }
-      //   }
-      //   $scope.categories[indexof].questions.push({"question":quest,"answers" : [{text :'Be the first to answer!'}],"score" : 0, "creator" : generalService.user.id, "type" : this.type});
-      // }
-      // else{
-      //   $scope.categories[$scope.categories.length]={'title': title,'questions':['other']};
-      //   $scope.categories[$scope.categories.length].questions.push({"question" : quest, "answers" : [{text:'Be the first to answer!'}], "score" : 0, "creator" : generalService.user.id, "type":this.type});
-      //   $scope.categories[$scope.categories.length].questions.splice(0,1)
-      //   $scope.categories.length += 1;
-      // }
     };
 
 
 
     $scope.answerSubmit = function(){
       var answer, answerObj, aid, result;
-      debugger;
       result = $scope.loggedIn()
       if(!result){
         return

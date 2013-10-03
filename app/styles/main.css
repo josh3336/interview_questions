@@ -40,11 +40,13 @@ body {
     letter-spacing: -1px;
 }
 
-
-.buttons {
-    float: right;
+.buttons{
+    position: absolute;
+    padding-top: 25px;
+    padding-right:25px;
+    right: 0px;
+    top: 0px;
 }
-
 .answer-buttons {
     position: absolute;
     top: 1%;
@@ -58,6 +60,7 @@ body {
 .question {
     padding: 30px 0px 12px 0px;
     font-weight: bold;
+    position: relative;
     font-size: 16px;
 }
 body {
@@ -95,6 +98,9 @@ body {
 }
 .answers {
     font-weight: bold;
+    width: 96%;
+    position: relative;
+    left: 15px;
 }
 .answer-score {
     position: absolute;
@@ -152,14 +158,23 @@ a:hover {
 
 /*pretty print*/
 .prettyprint {
+    margin-top: -10px;
     font-size: 14px;
     font-family: Consolas;
     background-color: #AEB0AC
 }
+.undefinedprettyprint{
+    width: 60%;
+    word-break: break-word;
+}
 /**/
 
-.insert-creator {
-    position: relative;
-    bottom: 26px;
-    left: 60px;
+.insert-creator-answer{
+    padding-top: 2px;
+    float: right;
 }
+
+.answer-buttons button{
+    padding: 2px 6px;
+}
+

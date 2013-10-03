@@ -17,10 +17,21 @@ angular.module('interviewQuestionsApp')
   })
   .directive('insertCreator', function(){
     return function($scope,element,attrs){
-      var creatorId = $scope.questions[$scope.question].creator
-      var creator = $scope.$parent.$parent.users[creatorId]
+      var creatorId = $scope.questions[$scope.question].creator;
+      var creator = $scope.$parent.$parent.users[creatorId];
       if(creator){
          element.append('By: '+'<a href="'+creator['profile']+'">'+creator['displayName']+'</a>');
+      }
+    }
+  })
+  .directive('insertCreatorAnswer',function(){
+    return function($scope,element,attrs){
+      if($scope.answers[$scope.answer]){
+        var creatorId = $scope.answers[$scope.answer].creator
+        var creator = $scope.users[creatorId]
+        if(creator){
+           element.append('By: '+'<a href="'+creator['profile']+'">'+creator['displayName']+'</a>');
+        }
       }
     }
   })
