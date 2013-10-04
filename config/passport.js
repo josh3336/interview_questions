@@ -32,7 +32,7 @@ module.exports = function(app){
   passport.use(new FacebookStrategy({
       clientID: FACEBOOK_APP_ID,
       clientSecret: FACEBOOK_APP_SECRET,
-      callbackURL: "http://127.0.0.1:3000/auth/facebook/callback/"
+      callbackURL: "http://developerquestions.herokuapp.com/"
     },
     function(accessToken, refreshToken, profile, done) {
       // asynchronous verification, for effect...
